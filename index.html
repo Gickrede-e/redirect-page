@@ -8,14 +8,16 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
     :root {
-      --bg-gradient: linear-gradient(135deg, #111827, #0f172a, #111827);
-      --card: rgba(255, 255, 255, 0.06);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --accent: #22d3ee;
-      --accent-2: #a855f7;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --bg-gradient: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.14), transparent 38%),
+        radial-gradient(circle at 80% 0%, rgba(8, 47, 73, 0.32), transparent 40%),
+        linear-gradient(160deg, #061322, #0a1c31 50%, #05101c);
+      --card: rgba(13, 31, 51, 0.78);
+      --card-border: rgba(95, 190, 255, 0.22);
+      --text-primary: #e6f1ff;
+      --text-secondary: #9fb7d3;
+      --accent: #16e1f4;
+      --accent-2: #0ea5e9;
+      --shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
     }
 
     * {
@@ -31,8 +33,8 @@
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text-primary);
       background: var(--bg-gradient);
-      background-size: 200% 200%;
-      animation: backgroundShift 14s ease infinite;
+      background-size: 180% 180%;
+      animation: backgroundShift 18s ease infinite;
       position: relative;
       overflow: hidden;
     }
@@ -43,17 +45,17 @@
       position: absolute;
       width: 360px;
       height: 360px;
-      background: radial-gradient(circle at center, rgba(34, 211, 238, 0.28), transparent 60%);
-      filter: blur(40px);
+      background: radial-gradient(circle at center, rgba(22, 225, 244, 0.24), transparent 60%);
+      filter: blur(48px);
       transform: rotate(20deg);
       z-index: 0;
     }
 
     body::after {
-      background: radial-gradient(circle at center, rgba(168, 85, 247, 0.26), transparent 60%);
-      top: 10%;
+      background: radial-gradient(circle at center, rgba(14, 165, 233, 0.22), transparent 60%);
+      top: 6%;
       right: 8%;
-      transform: rotate(-15deg);
+      transform: rotate(-18deg);
     }
 
     body::before {
@@ -65,7 +67,7 @@
       width: min(90vw, 520px);
       background: var(--card);
       border: 1px solid var(--card-border);
-      border-radius: 20px;
+      border-radius: 18px;
       padding: 32px 30px;
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
@@ -80,7 +82,7 @@
       position: absolute;
       inset: 1px;
       border-radius: 18px;
-      background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+      background: linear-gradient(130deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
       z-index: -1;
     }
 
@@ -95,17 +97,17 @@
       width: 54px;
       height: 54px;
       border-radius: 16px;
-      background: linear-gradient(145deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.26));
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, rgba(22, 225, 244, 0.26), rgba(14, 165, 233, 0.18));
+      border: 1px solid rgba(22, 225, 244, 0.35);
       display: grid;
       place-items: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
 
     .icon-ring svg {
       width: 26px;
       height: 26px;
-      stroke: #e0f2fe;
+      stroke: #d9f1ff;
     }
 
     h1 {
@@ -136,16 +138,16 @@
       font-size: 16px;
       letter-spacing: 0.01em;
       text-decoration: none;
-      color: #0b1224;
-      background: linear-gradient(120deg, #22d3ee, #a855f7);
-      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.25), 0 8px 22px rgba(168, 85, 247, 0.25);
+      color: #05101c;
+      background: linear-gradient(120deg, #16e1f4, #0ea5e9);
+      box-shadow: 0 12px 30px rgba(14, 165, 233, 0.28), 0 8px 22px rgba(22, 225, 244, 0.22);
       transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.15s ease;
     }
 
     .button:hover {
       transform: translateY(-1px) scale(1.005);
-      box-shadow: 0 14px 36px rgba(34, 211, 238, 0.28), 0 12px 28px rgba(168, 85, 247, 0.3);
-      filter: brightness(1.02);
+      box-shadow: 0 14px 36px rgba(22, 225, 244, 0.3), 0 12px 28px rgba(14, 165, 233, 0.32);
+      filter: brightness(1.03);
     }
 
     .button:active {
@@ -167,9 +169,9 @@
       gap: 8px;
       padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-secondary);
+      background: rgba(22, 225, 244, 0.08);
+      border: 1px solid rgba(22, 225, 244, 0.16);
+      color: #9ad7f4;
       font-size: 13px;
       margin-top: 6px;
     }
@@ -178,8 +180,8 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #22d3ee;
-      box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.18);
+      background: #16e1f4;
+      box-shadow: 0 0 0 6px rgba(22, 225, 244, 0.18);
     }
 
     @keyframes backgroundShift {
@@ -204,15 +206,18 @@
       const titleText = isRussian ? 'Продолжить' : 'Continue';
       const buttonText = isRussian ? 'Нажмите, чтобы перейти' : 'Click to proceed';
       const instructionsText = isRussian
-        ? 'Переадресация произойдёт автоматически через 5 секунд.\nЕсли этого не произошло, нажмите на кнопку ниже.'
-        : 'You will be redirected automatically in 5 seconds.\nIf nothing happens, please use the button below.';
+        ? 'Переадресация произойдёт автоматически через 5 секунд.'
+        : 'You will be redirected automatically in 5 seconds.';
+      const fallbackText = isRussian
+        ? 'Если этого не произошло, нажмите на кнопку ниже.'
+        : 'If nothing happens, please use the button below.';
 
       document.getElementById('title').innerText = titleText;
       const linkEl = document.getElementById('redirectLink');
       linkEl.innerText = buttonText;
       linkEl.href = redirectTo;
       document.getElementById('instructions').innerText = instructionsText;
-      document.getElementById('fallback').innerText = instructionsText;
+      document.getElementById('fallback').innerText = fallbackText;
 
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
         document.documentElement.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #f1f5f9, #e2e8f0, #f1f5f9)');
@@ -252,10 +257,9 @@
         <p class="pill"><span class="status-dot"></span>Auto redirect ready</p>
       </div>
     </div>
-    <p id="instructions" class="subtitle">You will be redirected automatically in a few seconds.</p>
+    <p id="instructions" class="subtitle">You will be redirected automatically in 5 seconds.</p>
     <a id="redirectLink" class="button" href="#" target="_blank">Click to proceed</a>
-    <p id="fallback" class="help">You will be redirected automatically within 5 seconds.
-If nothing happens, please click the button above.</p>
+    <p id="fallback" class="help">If nothing happens, please use the button below.</p>
   </main>
 </body>
 </html>
