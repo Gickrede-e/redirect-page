@@ -1,145 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect Page</title>
-    <style>
-        /* Импорт шрифта */
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;600&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-        /* Основные стили для тела */
-        body {
-            font-family: 'Ubuntu', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Светлая тема */
-        body.light {
-            background-color: #F5F5F5;
-            color: #333;
-        }
-
-        /* Темная тема */
-        body.dark {
-            background-color: #161b22;
-            color: #ddd;
-        }
-
-        /* Фон с текстурой */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://i.ibb.co/HqRwCSL/Pattern-Copy-1.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-            z-index: 2;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 14px;
-            margin-top: 20px;
-            color: #888;
-        }
-
-        a.button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            color: #ffffff;
-            background: #0b7285;
-            background-size: 400% 400%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: gradientAnimation 5s ease-in-out infinite;
-        }
-
-        a.button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-    </style>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const currentURL = window.location.href;
-    let redirectTo = decodeURIComponent(currentURL.split('redirect_to=')[1] || '');
-    const language = navigator.language || navigator.userLanguage;
-    const isRussian = language.startsWith('ru');
-
-    const titleText = isRussian ? 'Продолжить' : 'Continue';
-    const buttonText = isRussian ? 'Нажмите сюда, чтобы продолжить' : 'Click here to proceed';
-    const instructionsText = isRussian
-      ? 'Переадресация произойдёт автоматически в течение 5 секунд.\nЕсли этого не произошло, нажмите на кнопку выше.'
-      : 'You will be redirected automatically within 5 seconds.\nIf nothing happens, please click the button above.';
-
-    // document.getElementById('title').innerText = titleText;
-    const linkEl = document.getElementById('redirectLink');
-    linkEl.innerText = buttonText;
-    linkEl.href = redirectTo;
-    document.getElementById('instructions').innerText = instructionsText;
-
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.add('light');
+    :root {
+      --bg-gradient: linear-gradient(135deg, #111827, #0f172a, #111827);
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --accent: #22d3ee;
+      --accent-2: #a855f7;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     }
 
-    let redirectTimer;
-
-    if (redirectTo) {
-      redirectTimer = setTimeout(() => {
-        window.location.href = redirectTo;
-      }, 5000);
-
-      linkEl.addEventListener('click', function () {
-        clearTimeout(redirectTimer);
-      });
-    } else {
-      alert(isRussian ? 'Не указана ссылка для перенаправления.' : 'No redirect link specified.');
+    * {
+      box-sizing: border-box;
     }
-  });
-</script>
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-gradient);
+      background-size: 200% 200%;
+      animation: backgroundShift 14s ease infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle at center, rgba(34, 211, 238, 0.28), transparent 60%);
+      filter: blur(40px);
+      transform: rotate(20deg);
+      z-index: 0;
+    }
+
+    body::after {
+      background: radial-gradient(circle at center, rgba(168, 85, 247, 0.26), transparent 60%);
+      top: 10%;
+      right: 8%;
+      transform: rotate(-15deg);
+    }
+
+    body::before {
+      bottom: 5%;
+      left: 10%;
+    }
+
+    .card {
+      width: min(90vw, 520px);
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px 30px;
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      border-radius: 18px;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+      z-index: -1;
+    }
+
+    .header {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .icon-ring {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.26));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .icon-ring svg {
+      width: 26px;
+      height: 26px;
+      stroke: #e0f2fe;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 0 0 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin: 20px 0 8px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      color: #0b1224;
+      background: linear-gradient(120deg, #22d3ee, #a855f7);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.25), 0 8px 22px rgba(168, 85, 247, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px) scale(1.005);
+      box-shadow: 0 14px 36px rgba(34, 211, 238, 0.28), 0 12px 28px rgba(168, 85, 247, 0.3);
+      filter: brightness(1.02);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .help {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22d3ee;
+      box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.18);
+    }
+
+    @keyframes backgroundShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentURL = window.location.href;
+      let redirectTo = decodeURIComponent(currentURL.split('redirect_to=')[1] || '');
+      const language = navigator.language || navigator.userLanguage;
+      const isRussian = language.startsWith('ru');
+
+      const titleText = isRussian ? 'Продолжить' : 'Continue';
+      const buttonText = isRussian ? 'Нажмите, чтобы перейти' : 'Click to proceed';
+      const instructionsText = isRussian
+        ? 'Переадресация произойдёт автоматически через 5 секунд.\nЕсли этого не произошло, нажмите на кнопку ниже.'
+        : 'You will be redirected automatically in 5 seconds.\nIf nothing happens, please use the button below.';
+
+      document.getElementById('title').innerText = titleText;
+      const linkEl = document.getElementById('redirectLink');
+      linkEl.innerText = buttonText;
+      linkEl.href = redirectTo;
+      document.getElementById('instructions').innerText = instructionsText;
+      document.getElementById('fallback').innerText = instructionsText;
+
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #f1f5f9, #e2e8f0, #f1f5f9)');
+        document.documentElement.style.setProperty('--card', 'rgba(255, 255, 255, 0.75)');
+        document.documentElement.style.setProperty('--card-border', 'rgba(0, 0, 0, 0.05)');
+        document.documentElement.style.setProperty('--text-primary', '#0f172a');
+        document.documentElement.style.setProperty('--text-secondary', '#475569');
+        document.documentElement.style.setProperty('--shadow', '0 20px 60px rgba(15, 23, 42, 0.18)');
+      }
+
+      let redirectTimer;
+
+      if (redirectTo) {
+        redirectTimer = setTimeout(() => {
+          window.location.href = redirectTo;
+        }, 5000);
+
+        linkEl.addEventListener('click', function () {
+          clearTimeout(redirectTimer);
+        });
+      } else {
+        alert(isRussian ? 'Не указана ссылка для перенаправления.' : 'No redirect link specified.');
+      }
+    });
+  </script>
 </head>
 <body>
-    <div class="container">
-        <!-- <h1 id="title">Continue</h1> -->
-        <a id="redirectLink" class="button" href="#" target="_blank">Click here to proceed</a>
-        <p id="instructions">To continue, please click the button above.</p>
+  <main class="card">
+    <div class="header">
+      <div class="icon-ring" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <div>
+        <h1 id="title">Continue</h1>
+        <p class="pill"><span class="status-dot"></span>Auto redirect ready</p>
+      </div>
     </div>
+    <p id="instructions" class="subtitle">You will be redirected automatically in a few seconds.</p>
+    <a id="redirectLink" class="button" href="#" target="_blank">Click to proceed</a>
+    <p id="fallback" class="help">You will be redirected automatically within 5 seconds.
+If nothing happens, please click the button above.</p>
+  </main>
 </body>
 </html>
